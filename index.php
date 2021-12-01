@@ -21,7 +21,7 @@
 
         if(empty($_POST['password']))
         {
-            echo "password empty <br />";
+            $errors['password'] = "Please enter password <br />";
         }
         else
         {
@@ -44,7 +44,8 @@
                 <input type="text" name="email">
                 <div class="red-text"><?php echo $errors['email']; ?></div>
                 <label>Password:</label>
-                <input type="password" name="password">
+                <input type="password" name="password" style="margin-right: 20px;">
+                <div class="red-text"><?php echo $errors['password']; ?></div>
                 <div class="center" style="margin:15px; text-align:center; padding-left:110px">
                     <a href="create_account.php" style="margin-right: 20px;">Create Account</a>
                     <a href="forgot_password.php" style="margin-right: 20px;">Forgot Password</a>
