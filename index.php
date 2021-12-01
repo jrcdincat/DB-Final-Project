@@ -27,6 +27,13 @@
         {
             echo htmlspecialchars($_POST['password']);
         }
+
+        // No errors present can proceed to next page
+        // *** TODO: change locations to switch to
+        if(!array_filter($errors))
+        {
+            header('Location: forgot_password.php');
+        }
     }
 ?>
 
