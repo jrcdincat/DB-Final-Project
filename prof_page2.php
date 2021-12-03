@@ -17,14 +17,42 @@
     <!-- Add header to webpage -->
     <?php include ('templates/header.php'); ?>
         <section style="text-align: center;">
+
+            <!-- Table -->
+            <form class="table-form" action="prof_page2.php" method="POST">
             <h1>
-                <?php echo "Form"; ?>
+                <?php echo "Books"; ?>
             </h1>
+            <div style="overflow: auto;">
+                <table style="width:100%">
+                    <tr>
+                        <th style="width: 3%;"></th>
+                        <th style="width:18%">Title</th>
+                        <th style="width:18%">Author(s)</th>
+                        <th style="width:18%">Edition</th>
+                        <th style="width:18%">Publisher</th>
+                        <th style="width:18%">ISBN</th>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="check[]" value="..."></td>
+                        <td>Test Title</td>
+                        <td>Test Author</td>
+                        <td>Test Edition</td>
+                        <td>Test Publisher</td>
+                        <td>Test ISBN</td>
+                    </tr>
+                </table>
+            </div>
+            </form>
+
+            <!-- Button Options -->
             <form action="prof_page2.php" method="POST">
                 <button name="open_new_book_form" class="btn-options" type="submit" class="btn">Add New Book</button>
                 <button name="delete_books" class="btn-options" type="submit" class="btn" style="top: 355px;">Delete Books</button>
                 <button name="delete_form" class="btn-options" type="submit" class="btn" style="top: 410px;">Delete Form</button>
             </form>
+
+            <!-- Add new books popup -->
             <div class="form-popup" id="add_book_form" <?php if($is_add_book_visible){echo 'style="display:inline;"';}?>>
                 <form action='prof_page2.php' method="POST" class="form-container">
                     <h1>Add Book</h1>
@@ -50,7 +78,6 @@
                     </form>
                 </form>
             </div>
-
         </section>
     <?php include ('templates/footer.php'); ?>
 </html>

@@ -27,6 +27,17 @@ form {
 .red-text {color:red !important;
 }
 
+.table-form {
+  max-width: 800px;
+  margin: 20px;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  white-space:nowrap;
+}
+
 .btn-options {
   background-color: rgb(0, 0, 0);
   color: white;
