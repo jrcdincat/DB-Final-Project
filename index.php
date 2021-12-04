@@ -35,7 +35,7 @@
         {
                     // make query and get results
 
-            $sql = "SELECT email, passwords FROM Professors WHERE email = '".$email."' AND passwords = '".$password."'";
+            $sql = "SELECT Email, pword FROM Professors WHERE Email = '".$email."' AND pword = '".$password."'";
             $result = mysqli_query($conn, $sql);
 
             if(mysqli_num_rows($result) > 0)
