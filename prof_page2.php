@@ -29,11 +29,7 @@
         if(mysqli_num_rows($result_check) == 0)
         {
             $sql_add_book_to_form = "INSERT INTO forms (formID, isbn) VALUES ('".$formID."', '".$isbn."')";
-            if(            mysqli_query($conn, $sql_add_book_to_form)            )
-            {
-                echo "success";
-            }
-            echo mysqli_error($conn);
+            mysqli_query($conn, $sql_add_book_to_form);
         }
         mysqli_free_result($result_check);
     }
