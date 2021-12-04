@@ -44,6 +44,25 @@
     {
         $is_add_book_visible = false;
     }
+
+    // Delete selected books
+    if(isset($_POST['delete_books']))
+    {
+        $checked_books = $_POST['check'];
+        foreach($checked_books as $book)
+        {
+            $sql_delete_selected = "DELETE FROM forms WHERE isbn = '".$book."'";
+            mysqli_query($conn, $sql_delete_selected);
+            
+            // Delete book from books table if no more forms use that book
+            $sql_check_delete_from_books = "SELECT * FROM forms WHERE isbn = '".$book."'";
+            if(mysqli_num_rows(mysqli_query($conn, $sql_check_delete_from_books)) == 0)
+            {
+                $sql_delete_selected = "DELETE FROM books WHERE isbn = '".$book."'";
+                mysqli_query($conn, $sql_delete_selected);
+            }
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -99,12 +118,12 @@
                     ?>
                 </table>
             </div>
+                <button name="delete_books" class="btn-options" type="submit" class="btn" style="top: 355px;">Delete Books</button>
             </form>
 
             <!-- Button Options -->
             <form action="prof_page2.php" method="POST">
                 <button name="open_new_book_form" class="btn-options" type="submit" class="btn">Add New Book</button>
-                <button name="delete_books" class="btn-options" type="submit" class="btn" style="top: 355px;">Delete Books</button>
                 <button name="delete_form" class="btn-options" type="submit" class="btn" style="top: 410px;">Delete Form</button>
             </form>
 
