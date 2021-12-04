@@ -37,6 +37,8 @@
     
     if (isset($_POST['edit_form_submit']))
     {
+        $sql = "SELECT * FROM forms where formID = '".$formID."'";
+        $result = mysqli_query($conn, $sql);
         // Check if form already exists, if not, prompt to create new form
         if (mysqli_num_rows($result) > 0)
         {
