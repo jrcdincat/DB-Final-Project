@@ -1,4 +1,6 @@
 <?php     
+    include('db_connection.php');
+
     $errors = array('email'=>'','password'=>'');
 
     if(isset($_POST['submit']))
@@ -25,16 +27,33 @@
         }
         else
         {
-            echo htmlspecialchars($_POST['password']);
+            $password = htmlspecialchars($_POST['password']);
         }
 
         // No errors present can proceed to next page
-        // *** TODO: change locations to switch to
         if(!array_filter($errors))
         {
-            header('Location: prof_page1.php');
+                    // make query and get results
+
+            $sql = "SELECT email, passwords FROM Professors WHERE email = '".$email."' AND passwords = '".$password."'";
+            $result = mysqli_query($conn, $sql);
+
+            if(mysqli_num_rows($result) > 0)
+            {
+                // Successfully logged in, save values in cookies
+                echo 'success:';
+                $cookie_name = 'email';
+                setcookie($cookie_name, $email, time() + 86400, "/"); // 86400 = 1 day
+                header('Location: prof_page1.php');
+            }
+            else
+            {
+                $errors['password'] = "Invalid email or password <br />";
+            }
+            mysqli_free_result($result);
         }
     }
+    mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>

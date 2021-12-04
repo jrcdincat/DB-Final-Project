@@ -1,4 +1,10 @@
 <?php
+    include('db_connection.php');
+
+    if(!isset($_COOKIE['email']))
+    {
+        echo "cookie not set";
+    }
 
     if(isset($_POST['new_form_submit']))
     {
