@@ -32,7 +32,7 @@
         // *** TODO: change locations to switch to
         if(!array_filter($errors))
         {
-            header('Location: forgot_password.php');
+            header('Location: prof_page1.php');
         }
     }
 ?>
