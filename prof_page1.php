@@ -10,6 +10,19 @@
         echo "cookie not set";
     }
 
+    // Set visibility of add new books form
+    $is_overwrite_popup_visible= false;
+
+    if(isset($_POST['no_overwrite']))
+    {
+        $is_overwrite_popup_visible = false;
+    }
+    if(isset($_POST['yes_overwrite']))
+    {
+        // Go to next page after deleting previous form data
+        header('Location: prof_page2.php');
+    }        
+
     $email = $_COOKIE['email'];
     $formID = $_COOKIE['formID'];
 
@@ -21,18 +34,11 @@
         
         if (mysqli_num_rows($result) > 0)
         {
-            // Request deletion first
-            echo "record found";
-        }
-        else
-        {
-            // Go to next page to add books
-            echo "No records";
+            // Request confirmation to overwrite form
+            $is_overwrite_popup_visible= true;    
         }
 
         mysqli_free_result($result);
-        // Send to new form
-        header('Location: prof_page2.php');
     }
     
     if (isset($_POST['edit_form_submit']))
@@ -45,14 +51,14 @@
             // Request deletion first
             echo "record found";
         }
-        else
-        {
-            // Go to next page to add books without populating values
-            echo "No records";
-        }
+        // else
+        // {
+        //     // Go to next page to add books without populating values
+        //     echo "No records";
+        // }
 
         // Send to form edit
-        header('Location: prof_page2.php');
+        //header('Location: prof_page2.php');
     }
 
     mysqli_close($conn);
@@ -61,18 +67,28 @@
 <html>
     <!-- Add header to webpage -->
     <?php include ('templates/header.php'); ?>
-    <section class="container" style="text-align: center;">
-            <h1>
-                <?php echo "Select Option"; ?>
-            </h1>
-            <form action=prof_page1.php method="POST">
-                <div class="center" style="margin:15px; text-align:center;">
-                        <input type="submit" name="new_form_submit" value="New Form">
-                </div>
-                <div class="center" style="margin:15px; text-align:center;">
-                        <input type="submit" name="edit_form_submit" value="Edit Form">
-                </div>
-            </form>
+        <section class="container" style="text-align: center;">
+                <h1>
+                    <?php echo "Select Option"; ?>
+                </h1>
+                <form action=prof_page1.php method="POST">
+                    <div class="center" style="margin:15px; text-align:center;">
+                            <input type="submit" name="new_form_submit" value="New Form">
+                    </div>
+                    <div class="center" style="margin:15px; text-align:center;">
+                            <input type="submit" name="edit_form_submit" value="Edit Form">
+                    </div>
+                </form>
+                <!-- Popup -->
+                <div class="form-popup" id="delete_form" <?php if($is_overwrite_popup_visible){echo 'style="display:inline;"';}?>>
+                <form action='prof_page1.php' method="POST" class="form-container">
+                    <h1>A form already exists and will be overwritten. Would you like to continue?</h1>
+                    <button name="yes_overwrite" type="submit" class="btn">Continue</button>
+                    <form action="prof_page1.php" method="POST">
+                        <button name="no_overwrite" type="submit" class="btn cancel">Cancel</button>
+                    </form>
+                </form>
+            </div>
         </section>
     <?php include ('templates/footer.php'); ?>
 </html>
