@@ -137,6 +137,8 @@
 <html>
     <!-- Add header to webpage -->
     <?php include ('templates/header.php'); ?>
+    <?php include ('templates/prof_navbar.php'); ?>
+
         <section class="container" style="text-align: center;">
             <h1>
                 <?php echo "Select Option"; ?>
