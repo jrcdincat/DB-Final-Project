@@ -70,9 +70,24 @@
 
             <!-- Table -->
             <form class="table-form" action="prof_page2.php" method="POST">
-            <h1>
-                <?php echo "Books"; ?>
-            </h1>
+                <?php 
+                    $term = $_COOKIE['semester'];
+                    $copy = $term;
+                    // if there's 'su' in term, create a variable that will save 'Summer' + the digits of term
+                    // if there's 'f' in term, create a variable that will save 'Fall' + the digits of term
+                    // if there's 's' in term, create a variable that will save 'Spring" + the digits of term
+                    if(strpos($term, 'su') !== false){
+                        $copy = 'Summer ' . substr($term, 2);
+                    }
+                    else if(strpos($term, 'f') !== false){
+                        $copy = 'Fall ' . substr($term, 1);
+                    }
+                    else if(strpos($term, 's') !== false){
+                        $copy = 'Spring ' . substr($term, 1);
+                    }                
+                
+                    echo "<h1> $copy Books</h1>"; 
+                ?>
             <div style="overflow: auto;">
                 <table style="width:100%">
                     <thead>
