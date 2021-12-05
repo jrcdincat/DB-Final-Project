@@ -43,7 +43,7 @@
                 $user_data = mysqli_fetch_assoc($result);
                 $cookie_name = 'email';
                 setcookie($cookie_name, $email, time() + 86400, "/"); // 86400 = 1 day
-                header('Location: staff_page1.php');
+                header('Location: staffhome.php');
             }
             else
             {
