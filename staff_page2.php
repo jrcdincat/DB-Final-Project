@@ -4,7 +4,7 @@
     // If the request is a POST, get the f_name, l_name, and email from the form and insert into the database
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $intent = $_POST['intent'];
-
+    
         if ($intent == 'add') {
             $f_name = $_POST['f_name'];
             $l_name = $_POST['l_name'];

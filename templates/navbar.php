@@ -27,5 +27,7 @@
   <a href="staffhome.php">Home</a>
   <a href="staff_page1.php">Admin Management</a>
   <a href="staff_page2.php">Faculty Management</a>
+  <a href="staff_upcomingsemester.php">Upcoming Semester's Book Request</a>
+  <a href="staff_bookrequests.php">Additional Book Requests</a>
 </div>
 
