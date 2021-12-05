@@ -12,7 +12,7 @@
             $email = $_POST['email'];
             $temp_password = $_POST['t_pass'];
 
-            $sql = "INSERT INTO admin (f_name, l_name, Email, pword, temp_pass) VALUES ('$f_name', '$l_name', '$email', '$temp_password', '$temp_password')";
+            $sql = "INSERT INTO admin (f_name, l_name, email, pword, temp_pass) VALUES ('$f_name', '$l_name', '$email', '$temp_password', '$temp_password')";
             $result = mysqli_query($conn, $sql);
             // If the query succeeded, reload the page with a get request
             if ($result) {
@@ -24,7 +24,7 @@
             // Delete all profesors with the array of emails that were checked
             $emails = $_POST['emails'];
             foreach ($emails as $email) {
-                $sql = "DELETE FROM admin WHERE Email = '$email'";
+                $sql = "DELETE FROM admin WHERE email = '$email'";
                 $result = mysqli_query($conn, $sql);
             }
             // If the query succeeded, reload the page with a get request
@@ -58,7 +58,7 @@
                     <form action="staff_page1.php" method="post">
                         <input type="text" name="f_name" placeholder="First Name" required>
                         <input type="text" name="l_name" placeholder="Last Name" required>
-                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="email" name="email" placeholder="email" required>
                         <input type="password" name="t_pass" placeholder="Temporary Password" required>
                         <input type="text" name="intent" value="add" hidden>
                         <input type="submit" value="Add ADMIN">
@@ -82,10 +82,10 @@
                                 // Loop through each admin display f_name, l_name, and email
                                 foreach ($admin_data as $data) {
                                     echo "<tr>";
-                                    echo "<td><input class='adm' type='checkbox' name='adm[]' value='" . $data['Email'] . "' checked></td>";
+                                    echo "<td><input class='adm' type='checkbox' name='adm[]' value='" . $data['email'] . "' checked></td>";
                                     echo "<td>".$data['f_name']."</td>";
                                     echo "<td>".$data['l_name']."</td>";
-                                    echo "<td>".$data['Email']."</td>";
+                                    echo "<td>".$data['email']."</td>";
                                     echo "</tr>";
                                 }
                         ?>

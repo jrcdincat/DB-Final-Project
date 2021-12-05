@@ -11,7 +11,7 @@
             $email = $_POST['email'];
             $temp_pass = $_POST['t_pass'];
 
-            $sql = "INSERT INTO professors (f_name, l_name, Email, pword, temp_pass) VALUES ('$f_name', '$l_name', '$email', '$temp_pass', '$temp_pass')";
+            $sql = "INSERT INTO professors (f_name, l_name, email, pword, temp_pass) VALUES ('$f_name', '$l_name', '$email', '$temp_pass', '$temp_pass')";
             $result = mysqli_query($conn, $sql);
             
             if ($result) {
@@ -23,7 +23,7 @@
             // Delete all profesors with the array of emails that were checked
             $emails = $_POST['emails'];
             foreach ($emails as $email) {
-                $sql = "DELETE FROM professors WHERE Email = '$email'";
+                $sql = "DELETE FROM professors WHERE email = '$email'";
                 $result = mysqli_query($conn, $sql);
             }
             // If the query succeeded, reload the page with a get request
@@ -56,7 +56,7 @@
                     <form action="staff_page2.php" method="post">
                         <input type="text" name="f_name" placeholder="First Name" required>
                         <input type="text" name="l_name" placeholder="Last Name" required>
-                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="email" name="email" placeholder="email" required>
                         <input type="password" name="t_pass" placeholder="Temporary Password" required>
                         <input type="hidden" name="intent" value="add">
                         <input type="submit" value="Add Faculty">
@@ -80,10 +80,10 @@
                                 // Loop through each professor display f_name, l_name, and email
                                 foreach ($professor_data as $data) {
                                     echo "<tr>";
-                                    echo "<td><input class='prof' type='checkbox' name='professor_id[]' value='" . $data['Email'] . "' checked></td>";
+                                    echo "<td><input class='prof' type='checkbox' name='professor_id[]' value='" . $data['email'] . "' checked></td>";
                                     echo "<td>".$data['f_name']."</td>";
                                     echo "<td>".$data['l_name']."</td>";
-                                    echo "<td>".$data['Email']."</td>";
+                                    echo "<td>".$data['email']."</td>";
                                     echo "</tr>";
                                 }
                         ?>
@@ -93,7 +93,7 @@
                     ?>
                 </table>
                 <!-- Create a button to submit the form containing all of the professors that are checked -->
-                <button id="submit" type="submit" name="sendemail" class="btn btn-primary">SEND EMAIL(S)</button>
+                <button id="submit" type="submit" name="sendemail" class="btn btn-primary">SEND email(S)</button>
                 <button id="deleteselected" type="submit" name="delete" class="btn btn-primary">DELETE SELECTED</button>
         </section>
     <?php include ('templates/footer.php'); ?>
@@ -116,7 +116,7 @@
                 $('input[class="prof"]:checked').each(function(){
                     emails.push($(this).val());
                 });
-                // TODO: PROCESS THE EMAILS TO PASS TO NEXT PAGE
+                // TODO: PROCESS THE emailS TO PASS TO NEXT PAGE
                 console.log(emails);
             }
         });
