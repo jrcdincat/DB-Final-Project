@@ -100,5 +100,25 @@
             }
         });
 
+        // When the deleteselected button is clicked, check to see if any checkboxes are checked and if so, save the email of the checked checkboxes to a cookie
+        $('#deleteselected').click(function(){
+            var checked = $('input[class="prof"]:checked').length;
+            if(checked > 0){
+                var emails = [];
+                $('input[class="prof"]:checked').each(function(){
+                    emails.push($(this).val());
+                });
+
+                // Confirm with the user if he wants to delete the professors with a confirmation alert
+                var r = confirm("Are you sure you want to delete the " +checked+ " selected professors?");
+                if (r == true) {
+                    // TODO: PROCESS THE EMAILS TO DELETE THE PROFESSORS
+                    console.log(emails);
+                } else {
+                    return;
+                }
+            }
+        });
+
     </script>
 </html>
