@@ -62,6 +62,8 @@
 
 <!DOCTYPE html>
 <html>
+    <!-- Add Jquery Script-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Add header to webpage -->
     <?php include ('templates/header.php'); ?>
         <section style="text-align: center;">
@@ -149,4 +151,14 @@
             </div>
         </section>
     <?php mysqli_close($conn); include ('templates/footer.php'); ?>
+    <script>
+        // Check all checkboxes
+        $('#maincheck').click(function(){
+            if($(this).is(':checked')){
+                $('input[type="checkbox"]').prop('checked', true);
+            } else {
+                $('input[type="checkbox"]').prop('checked', false);
+            }
+        });
+    </script>
 </html>
