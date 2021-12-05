@@ -131,13 +131,15 @@
                 ?>
             </table>
         </div>
-            <button name="delete_books" class="btn-options" type="submit" class="btn" style="top: 355px;">Delete Books</button>
+        <div style="text-align:right; margin-top:5px">
+            <button name="delete_books" type="submit" class="btn">Delete</button>
+        </div>
         </form>
 
         <!-- Button Options -->
         <form action="prof_page2.php" method="POST">
-            <button name="open_new_book_form" class="btn-options" type="submit" class="btn">Add New Book</button>
-            <button name="delete_form" class="btn-options" type="submit" class="btn" style="top: 410px;">Delete Form</button>
+            <button name="open_new_book_form" class="btn-options" type="submit" style="top:345px;">Add New Book</button>
+            <button name="delete_form" class="btn-options" type="submit" class="btn" style="top: 400px;">Delete Form</button>
         </form>
 
         <!-- Add new books popup -->
