@@ -35,7 +35,7 @@
         {
                     // make query and get results
 
-            $sql = "SELECT Email, pword, forms FROM Professors WHERE Email = '".$email."' AND pword = '".$password."'";
+            $sql = "SELECT email, pword FROM Professors WHERE email = '".$email."' AND pword = '".$password."'";
             $result = mysqli_query($conn, $sql);
 
             if(mysqli_num_rows($result) > 0)
@@ -43,11 +43,8 @@
                 // Successfully logged in, save values in cookies
                 echo 'success:';
                 $user_data = mysqli_fetch_assoc($result);
-                $formID = $user_data['forms'];
                 $cookie_name = 'email';
-                $cookie_formID_name = 'formID';
                 setcookie($cookie_name, $email, time() + 86400, "/"); // 86400 = 1 day
-                setcookie($cookie_formID_name, $formID, time() + 86400, "/"); 
                 header('Location: prof_page1.php');
             }
             else

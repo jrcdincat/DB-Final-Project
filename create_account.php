@@ -61,13 +61,8 @@
         if(!array_filter($errors))
         {
             // Make query and get results
-            $sql_form = "SELECT forms FROM Professors WHERE forms = (SELECT MAX(forms) FROM Professors)";
-            $form_result = mysqli_query($conn, $sql_form);
-            $form = mysqli_fetch_assoc($form_result);
-            $newFormID = $form['forms'] + 1;
-
-            $sql = "INSERT INTO Professors (f_name, l_name, Email, pword, forms) VALUES('".$firstName."',
-            '".$lastName."','".$email."','".$password."', '".$newFormID."')";
+            $sql = "INSERT INTO Professors (f_name, l_name, email, pword) VALUES('".$firstName."',
+            '".$lastName."','".$email."','".$password."')";
 
             if(mysqli_query($conn, $sql))
             {
