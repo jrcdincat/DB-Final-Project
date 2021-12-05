@@ -10,7 +10,9 @@
             $f_name = $_POST['f_name'];
             $l_name = $_POST['l_name'];
             $email = $_POST['email'];
-            $sql = "INSERT INTO Professors (f_name, l_name, email) VALUES ('$f_name', '$l_name', '$email')";
+            $temp_password = $_POST['t_pass'];
+
+            $sql = "INSERT INTO admin (f_name, l_name, Email, pword, temp_pass) VALUES ('$f_name', '$l_name', '$email', '$temp_password', '$temp_password')";
             $result = mysqli_query($conn, $sql);
             // If the query succeeded, reload the page with a get request
             if ($result) {
@@ -22,7 +24,7 @@
             // Delete all profesors with the array of emails that were checked
             $emails = $_POST['emails'];
             foreach ($emails as $email) {
-                $sql = "DELETE FROM Professors WHERE Email = '$email'";
+                $sql = "DELETE FROM admin WHERE Email = '$email'";
                 $result = mysqli_query($conn, $sql);
             }
             // If the query succeeded, reload the page with a get request
@@ -117,10 +119,13 @@
                 });
 
                 // Confirm with the user if he wants to delete the professors with a confirmation alert
-                var r = confirm("Are you sure you want to delete the " +checked+ " selected professors?");
+                var r = confirm("Are you sure you want to delete the " +checked+ " selected ADMIN?");
                 if (r == true) {
-                    // TODO: PROCESS THE EMAILS TO DELETE THE PROFESSORS
-                    console.log(emails);
+                    // Send a POST request to this page with the emails of the professors to be deleted
+                    $.post("staff_page1.php", {emails: emails, intent: 'delete'}, function(data){
+                        // Reload the page
+                        location.reload();
+                    });
                 } else {
                     return;
                 }
