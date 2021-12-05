@@ -59,6 +59,7 @@
 <html>
     <!-- Add header to webpage -->
     <?php include ('templates/header.php'); ?>
+    <?php include ('templates/navbar.php'); ?>
         <section class="container" style="text-align: center;">
             <h1>
                 <?php echo "Welcome to the Staff Login!"; ?>

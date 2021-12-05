@@ -30,6 +30,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Add header to webpage -->
     <?php include ('templates/header.php'); ?>
+    <?php include ('templates/navbar.php'); ?>
         <section class="container" style="text-align: center;">
         <table style="width:100%">
                     <h1>Add a new ADMIN to the Database</h1>
@@ -72,6 +73,7 @@
                         mysqli_close($conn);
                     ?>
                 </table>
+                <br>
                 <button id="deleteselected" type="submit" name="delete" class="btn btn-primary">DELETE SELECTED ADMIN</button>
         </section>
     <?php include ('templates/footer.php'); ?>
