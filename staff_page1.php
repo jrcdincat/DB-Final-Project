@@ -1,6 +1,20 @@
 <?php
     include('db_connection.php');
 
+    // If the request is a POST, get the f_name, l_name, and email from the form and insert into the database
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $f_name = $_POST['f_name'];
+        $l_name = $_POST['l_name'];
+        $email = $_POST['email'];
+
+        $sql = "INSERT INTO Professors (f_name, l_name, email) VALUES ('$f_name', '$l_name', '$email')";
+        $result = mysqli_query($conn, $sql);
+        // If the query succeeded, reload the page with a get request
+        if ($result) {
+            header("Location: staff_page1.php");
+        }
+    }
+
     if(!isset($_COOKIE['email']))
     {
         echo "cookie not set";
@@ -26,7 +40,16 @@
                             <th style="width:18%">E-mail</th>
                         </tr>
                     </thead>
-                    <h1>Faculty List</h1?<br><hr>
+                    <h1>Add a Faculty</h1>
+                    <!-- Create a form with three inputs that take the first name, last name, and email of the faculty -->
+                    <form action="staff_page1.php" method="post">
+                        <input type="text" name="f_name" placeholder="First Name" required>
+                        <input type="text" name="l_name" placeholder="Last Name" required>
+                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="submit" value="Add Faculty">
+                    </form>
+                    <hr>
+                    <h1>Faculty List</h1>
                     <tbody>
                         <?php
                                 $sql = "SELECT * FROM Professors";
@@ -49,7 +72,8 @@
                     ?>
                 </table>
                 <!-- Create a button to submit the form containing all of the professors that are checked -->
-                <button id="submit" type="submit" name="submit" class="btn btn-primary">Submit</button>
+                <button id="submit" type="submit" name="sendemail" class="btn btn-primary">SEND EMAIL(S)</button>
+                <button id="deleteselected" type="submit" name="delete" class="btn btn-primary">DELETE SELECTED</button>
         </section>
     <?php include ('templates/footer.php'); ?>
 
