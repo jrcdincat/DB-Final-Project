@@ -13,25 +13,16 @@
         $publisher = htmlspecialchars($_POST['publisher']);
         
         // Try and get book 
-        $sql_get_book = "SELECT isbn FROM books WHERE isbn = '".$isbn."'";
+        $sql_get_book = "SELECT isbn FROM books WHERE isbn = '".$isbn."' AND formID = '".$formID."'";
         $get_book_result = mysqli_query($conn, $sql_get_book);
         $get_book_data = mysqli_fetch_assoc($get_book_result);
         mysqli_free_result($get_book_result);
         if(!$get_book_data)
         {
-            $sql_insert_book = "INSERT INTO books (isbn, Title, Writers, Publisher, form, b_edition) VALUES ('".$isbn."',
-            '".$title."', '".$authors."', '".$publisher."','', '".$edition."')"; 
+            $sql_insert_book = "INSERT INTO books (isbn, title, writers, publisher, formID, b_edition) VALUES ('".$isbn."',
+            '".$title."', '".$authors."', '".$publisher."','".$formID."', '".$edition."')"; 
             mysqli_query($conn, $sql_insert_book);
         }
-
-        $sql_check = "SELECT * FROM forms WHERE formID = '".$formID."' AND isbn = '".$isbn."'";
-        $result_check = mysqli_query($conn, $sql_check);
-        if(mysqli_num_rows($result_check) == 0)
-        {
-            $sql_add_book_to_form = "INSERT INTO forms (formID, isbn) VALUES ('".$formID."', '".$isbn."')";
-            mysqli_query($conn, $sql_add_book_to_form);
-        }
-        mysqli_free_result($result_check);
     }
 
     // Set visibility of add new books form
@@ -51,17 +42,21 @@
         $checked_books = $_POST['check'];
         foreach($checked_books as $book)
         {
-            $sql_delete_selected = "DELETE FROM forms WHERE isbn = '".$book."'";
+            $sql_delete_selected = "DELETE FROM books WHERE isbn = '".$book."' AND formID = '".$formID."'";
             mysqli_query($conn, $sql_delete_selected);
-            
-            // Delete book from books table if no more forms use that book
-            $sql_check_delete_from_books = "SELECT * FROM forms WHERE isbn = '".$book."'";
-            if(mysqli_num_rows(mysqli_query($conn, $sql_check_delete_from_books)) == 0)
-            {
-                $sql_delete_selected = "DELETE FROM books WHERE isbn = '".$book."'";
-                mysqli_query($conn, $sql_delete_selected);
-            }
         }
+    }
+
+    if(isset($_POST['delete_form']))
+    {
+        // Delete all books with formID
+        $sql_del_books_in_form = "DELETE FROM books WHERE formID='".$formID."'";
+        mysqli_query($conn, $sql_del_books_in_form);
+
+        // Delete formID
+        $sql_del_form = "DELETE FROM forms WHERE formID='".$formID."'";
+        mysqli_query($conn, $sql_del_form);
+        header('Location: prof_page1.php');
     }
 ?>
 
@@ -80,7 +75,7 @@
                 <table style="width:100%">
                     <thead>
                         <tr>
-                            <th style="width: 3%;"></th>
+                            <th style="width: 3%;">ALL <input id='maincheck' type='checkbox' name='main' unchecked></th>
                             <th style="width:18%">Title</th>
                             <th style="width:18%">Author(s)</th>
                             <th style="width:18%">Edition</th>
@@ -90,7 +85,7 @@
                     </thead>
                     <tbody>
                         <?php
-                                $sql = "SELECT * FROM forms WHERE formID = '".$formID."'";
+                                $sql = "SELECT * FROM books WHERE formID = '".$formID."'";
                                 $results = mysqli_query($conn, $sql);
                                 $form_data = mysqli_fetch_all($results, MYSQLI_ASSOC);
                                 mysqli_free_result($results);
@@ -104,16 +99,15 @@
                         ?>
                         <tr>
                             <td><input type="checkbox" name="check[]" value="<?php echo $isbn_val?>"></td>
-                            <td><?php echo $request_data['Title'];?></td>
-                            <td><?php echo $request_data['Writers'];?></td>
+                            <td><?php echo $request_data['title'];?></td>
+                            <td><?php echo $request_data['writers'];?></td>
                             <td><?php echo $request_data['b_edition'];?></td>
-                            <td><?php echo $request_data['Publisher'];?></td>
+                            <td><?php echo $request_data['publisher'];?></td>
                             <td><?php echo $request_data['isbn'];?></td>
                         </tr>
                     </tbody>
                     <?php                                     
                         mysqli_free_result($request_results);
-                        mysqli_close($conn);
                         endforeach; 
                     ?>
                 </table>
@@ -154,5 +148,5 @@
                 </form>
             </div>
         </section>
-    <?php include ('templates/footer.php'); ?>
+    <?php mysqli_close($conn); include ('templates/footer.php'); ?>
 </html>
