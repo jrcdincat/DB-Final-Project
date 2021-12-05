@@ -65,7 +65,7 @@
 
         <section class="container" style="text-align: center;">
             <h1>
-                <?php echo "Welcome"; ?>
+                <?php echo "Welcome to the Professor Login!"; ?>
             </h1>
             <h4 class="center" style="margin-bottom: 5px; padding-right: 370px;">Sign In</h4>
             <form class="white" action="index.php" method="POST" style="text-align: center;" >

@@ -27,6 +27,8 @@
     {
         echo "<!-- HTML for a horzintal navbar with 3 options -->
         <div class='navbar'>
+        <a href='index.php'>Professor Login</a>
+        <a href='staff.php'>Staff Login</a>
         </div>";
     }
     else
