@@ -3,16 +3,34 @@
 
     // If the request is a POST, get the f_name, l_name, and email from the form and insert into the database
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $f_name = $_POST['f_name'];
-        $l_name = $_POST['l_name'];
-        $email = $_POST['email'];
+        $intent = $_POST['intent'];
 
-        $sql = "INSERT INTO Professors (f_name, l_name, email) VALUES ('$f_name', '$l_name', '$email')";
-        $result = mysqli_query($conn, $sql);
-        // If the query succeeded, reload the page with a get request
-        if ($result) {
-            header("Location: staff_page1.php");
+        // Check if the intent is to add a new user
+        if ($intent == 'add') {
+            $f_name = $_POST['f_name'];
+            $l_name = $_POST['l_name'];
+            $email = $_POST['email'];
+            $sql = "INSERT INTO Professors (f_name, l_name, email) VALUES ('$f_name', '$l_name', '$email')";
+            $result = mysqli_query($conn, $sql);
+            // If the query succeeded, reload the page with a get request
+            if ($result) {
+                header("Location: staff_page1.php");
+            }
         }
+        // Check if the intent is to delete a user
+        else if ($intent == 'delete') {
+            // Delete all profesors with the array of emails that were checked
+            $emails = $_POST['emails'];
+            foreach ($emails as $email) {
+                $sql = "DELETE FROM Professors WHERE Email = '$email'";
+                $result = mysqli_query($conn, $sql);
+            }
+            // If the query succeeded, reload the page with a get request
+            if ($result) {
+                header("Location: staff_page1.php");
+            }
+        }
+
     }
 
     if(!isset($_COOKIE['email']))
@@ -40,6 +58,7 @@
                         <input type="text" name="l_name" placeholder="Last Name" required>
                         <input type="email" name="email" placeholder="Email" required>
                         <input type="password" name="t_pass" placeholder="Temporary Password" required>
+                        <input type="text" name="intent" value="add" hidden>
                         <input type="submit" value="Add ADMIN">
                     </form>
                     <hr>
