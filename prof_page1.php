@@ -137,6 +137,8 @@
 <html>
     <!-- Add header to webpage -->
     <?php include ('templates/header.php'); ?>
+    <?php include ('templates/prof_navbar.php'); ?>
+
         <section class="container" style="text-align: center;">
             <h1>
                 <?php echo "Select Option"; ?>
@@ -146,6 +148,7 @@
                     <option value="s2022">Spring 2022</option>
                     <option value="su2022">Summer 2022</option>
                     <option value="f2022">Fall 2022</option>
+                    <option value="s2023">Spring 2023</option>
                 </select>
                 <div class="center" style="margin:15px; text-align:center;">
                         <input type="submit" name="new_form_submit" value="New Form">
