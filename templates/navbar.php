@@ -24,7 +24,8 @@
 
 <?php
     if(basename($_SERVER['PHP_SELF']) == "staff.php" ||
-      basename($_SERVER['PHP_SELF']) == "staff_password.php")
+      basename($_SERVER['PHP_SELF']) == "staff_password.php"||
+      basename($_SERVER['PHP_SELF']) == "staff_changepassword.php")
     {
         echo "<!-- HTML for a horzintal navbar with 3 options -->
         <div class='navbar'>
