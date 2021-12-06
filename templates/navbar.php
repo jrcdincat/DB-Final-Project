@@ -53,7 +53,7 @@
           setcookie($key, '', time()-7000000, '/');
         endif;
       }
-      header('Location: index.php');
+      header('Location: staff.php');
     }
 
 ?>
