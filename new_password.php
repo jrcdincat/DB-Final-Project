@@ -70,7 +70,7 @@
     <?php include ('templates/prof_navbar.php'); ?>
         <section class="container" style="text-align: center;">
             <h1>
-                <?php echo "Reset Password"; ?>
+                <?php echo "Change Password"; ?>
             </h1>
             <form class="white" action="new_password.php" method="POST" style="text-align: center;" >
                 <label><b>Old Password</b>:</label>
