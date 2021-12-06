@@ -22,12 +22,39 @@
 }
 </style>
 
-<!-- HTML for a horzintal navbar with 3 options -->
-<div class="navbar">
-  <a href="staffhome.php">Home</a>
-  <a href="staff_page1.php">Admin Management</a>
-  <a href="staff_page2.php">Faculty Management</a>
-  <a href="staff_upcomingsemester.php">Upcoming Semester's Book Request</a>
-  <a href="staff_bookrequests.php">Additional Book Requests</a>
-</div>
+<?php
+    if(basename($_SERVER['PHP_SELF']) == "staff.php" ||
+      basename($_SERVER['PHP_SELF']) == "staff_password.php")
+    {
+        echo "<!-- HTML for a horzintal navbar with 3 options -->
+        <div class='navbar'>
+        <a href='index.php'>Professor Login</a>
+        <a href='staff.php'>Staff Login</a>
+        </div>";
+    }
+    else
+    {
+        echo "<!-- HTML for a horzintal navbar with 3 options -->
+        <div class='navbar'>
+          <a href='staffhome.php'>Home</a>
+          <a href='staff_page1.php'>Admin Management</a>
+          <a href='staff_page2.php'>Faculty Management</a>
+          <a href='staff_upcomingsemester.php'>Upcoming Semester's Book Request</a>
+          <a href='staff_bookrequests.php'>Additional Book Requests</a>
+          <a href='?sign_out' name='sign_out'>Sign Out</a>
+        </div>";
+    }
+
+    if (isset($_GET['sign_out']))
+    {
+      foreach ($_COOKIE as $key=>$val)
+      {
+        if(isset($_COOKIE[$key])):
+          setcookie($key, '', time()-7000000, '/');
+        endif;
+      }
+      header('Location: index.php');
+    }
+
+?>
 
