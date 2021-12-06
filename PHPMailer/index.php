@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <!-- Add header to webpage -->
-    <?php include ('templates/header.php'); ?>
+    <?php include ('../templates/header.php'); ?>
 <head>
     <title>Send an Email</title>
 </head>
@@ -13,6 +13,15 @@
         <!-- UI -->
 		<form id="myForm">
 			<h2>Send an Email</h2>
+
+            <?php
+                // Get all the email address on the url
+                $email = $_GET['emails'];
+                // Split the email address into an array
+                echo "<label>Recipients </label>";
+                echo "<input type='text' name='emails' value='$email' disabled><br>";
+            ?>
+            <!-- Create an input for the id that doesn't allow the user to change the value -->
 
 			<label>Subject</label>
 			<input id="subject" size="30" type="text" placeholder=" Enter Subject">
@@ -32,6 +41,10 @@
         function sendEmail() {
             var subject = $("#subject");
             var body = $("#body");
+            // get the value of emails input
+            var emails = $("input[name='emails']").val();
+            // transform the string into an array
+            var emailsArray = emails.split(",");
 
             //If subject and the text area are not empty, it will send email
             if (isNotEmpty(subject) && isNotEmpty(body)) {
@@ -41,7 +54,8 @@
                    dataType: 'json',
                    data: {
                        subject: subject.val(),
-                       body: body.val()
+                       body: body.val(),
+                       emails: emailsArray
                    }, success: function (response) {
                         $('#myForm')[0].reset();
                         $('.sent-notification').text("Message Sent Successfully.");
@@ -63,5 +77,5 @@
     </script>
 
 </body>
-<?php include ('templates/footer.php'); ?>
+<?php include ('../templates/footer.php'); ?>
 </html>

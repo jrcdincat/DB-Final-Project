@@ -5,6 +5,7 @@ use PHPMailer\PHPMailer\Exception;
 
     $subject = $_POST['subject'];
     $body = $_POST['body'];
+    $emails = $_POST['emails'];
 
     //PHPMailer Files
     require_once "PHPMailer/PHPMailer.php";
@@ -29,13 +30,19 @@ use PHPMailer\PHPMailer\Exception;
     $mail->Body = $body;                            //Text area of email
     $mail->addAddress("vubblemeteos@gmail.com");    //Sends to this email address
 
+    // for each email in the emails array add it as a bcc
+    foreach ($emails as $email) {
+        $mail->addBCC($email);
+    }
+    
+
     //Send the email
     if($mail->send()){
         $status = "success";
         $response = "Email is sent!";
     }
     else
-    {
+    {   
         $status = "failed";
         $response = "Something is wrong: <br>" . $mail->ErrorInfo;
     }

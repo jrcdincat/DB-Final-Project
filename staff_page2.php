@@ -116,8 +116,10 @@
                 $('input[class="prof"]:checked').each(function(){
                     emails.push($(this).val());
                 });
-                // TODO: PROCESS THE emailS TO PASS TO NEXT PAGE
-                console.log(emails);
+
+                // Redirect to PHPMailer/index.php and Send the list of emails
+                window.location.href = "PHPMailer/index.php?emails=" + emails;
+
             }
         });
 
