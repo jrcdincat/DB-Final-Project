@@ -73,6 +73,7 @@
                 <div class="red-text"><?php echo $errors['password']; ?></div>
                 <div class="center" style="margin:15px; text-align:center; padding-left:110px">
                     <a href="staff_password.php" style="margin-right: 20px;">Forgot Password</a>
+                    <a href="staff_changepassword.php" style="margin-right: 20px;">Change Password</a>
                     <input type="submit" name="submit" value=Login>
                 </div>
             </form>
