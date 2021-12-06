@@ -9,21 +9,21 @@ require_once "PHPMailer/Exception.php";
 
     $email = $_POST['email'];
     // Check if the email exists on the admin database
-    $sql = "SELECT * FROM admin WHERE email = '$email'";
+    $sql = "SELECT * FROM professors WHERE email = '$email'";
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck < 1){
         $status = "failed";
-        $response = "email is not an admin:" . $conn->error;
+        $response = "email is not a professor:" . $conn->error;
         exit(json_encode(array("status" => $status, "response" => $response)));
     }
     else{
         $rand = rand(100000,999999);
         // UPDATE the password and temporary password to match the random number on the admin table
-        $sql = "UPDATE admin SET pword = '$rand', temp_pass = '$rand' WHERE email = '$email'";
+        $sql = "UPDATE professors SET pword = '$rand', temp_pass = '$rand' WHERE email = '$email'";
         $result = mysqli_query($conn, $sql);
-        if($result){staff.php
-            $body = "Here's your temporary password: '$rand'. Please login and change your password. http://localhost/DB-Final-Project/staff.php";
+        if($result){
+            $body = "Here's your temporary password: '$rand'. Please login and change your password. http://localhost/DB-Final-Project/";
             $mail = new PHPMailer(true);
 
             //smtp server settings
