@@ -5,14 +5,8 @@
     {
         echo "cookie not set";
     }
-    if(!isset($_COOKIE['formID']))
-    {
-        echo "cookie not set";
-    }
 
     $email = $_COOKIE['email'];
-    $formID = $_COOKIE['formID'];
-
     function newForm($conn, $email)
     {
         $semester = $_COOKIE['semester'];
@@ -138,7 +132,6 @@
     <!-- Add header to webpage -->
     <?php include ('templates/header.php'); ?>
     <?php include ('templates/prof_navbar.php'); ?>
-
         <section class="container" style="text-align: center;">
             <h1>
                 <?php echo "Select Option"; ?>
