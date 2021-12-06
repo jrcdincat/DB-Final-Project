@@ -2,6 +2,8 @@
 <html>
     <!-- Add header to webpage -->
     <?php include ('templates/header.php'); ?>
+    <?php include ('templates/prof_navbar.php'); ?>
+
         <h4 class="sent-notification"></h4>
         <section class="container" style="text-align: center;">
             <h1>

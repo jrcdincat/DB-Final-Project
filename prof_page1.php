@@ -5,14 +5,8 @@
     {
         echo "cookie not set";
     }
-    if(!isset($_COOKIE['formID']))
-    {
-        echo "cookie not set";
-    }
 
     $email = $_COOKIE['email'];
-    $formID = $_COOKIE['formID'];
-
     function newForm($conn, $email)
     {
         $semester = $_COOKIE['semester'];

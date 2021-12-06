@@ -23,7 +23,9 @@
 </style>
 
 <?php
-    if(basename($_SERVER['PHP_SELF']) == "index.php")
+    if(basename($_SERVER['PHP_SELF']) == "index.php" ||
+      basename($_SERVER['PHP_SELF']) == "create_account.php" ||
+      basename($_SERVER['PHP_SELF']) == "forgot_password.php")
     {
         echo "<!-- HTML for a horzintal navbar with 3 options -->
         <div class='navbar'>
@@ -36,6 +38,7 @@
         echo "<!-- HTML for a horzintal navbar with 3 options -->
         <div class='navbar'>
           <a href='prof_page1.php'>Forms</a>
+          <a href='new_password.php'>Change Password</a>
         </div>";
     }
 ?>
