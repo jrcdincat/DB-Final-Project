@@ -60,7 +60,7 @@
     <!-- Add header to webpage -->
     <?php include ('templates/header.php'); ?>
     <?php include ('templates/navbar.php'); ?>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <section class="container" style="text-align: center;">
             <h1>
                 <?php echo "Welcome to the Staff Login!"; ?>
