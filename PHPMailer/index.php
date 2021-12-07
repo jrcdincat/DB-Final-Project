@@ -35,7 +35,7 @@
 
             <!-- Create an input that holds a date in the format mm/dd/yyyy -->
             <label>Automatic Reminder (Leave Blank for no reminder)</label>
-            <input id="reminder" size="30" type="text" placeholder=" Enter Date in mm/dd/yyyy format">
+            <input id="reminder" size="30" type="text" placeholder=" Enter Date in yyyy/mm/dd format">
             <br><br>
 
 			<p>Message</p>
@@ -60,9 +60,11 @@
             // get the value of reminder input
             var reminder = $("#reminder");
             var reminderDate = reminder.val();
+            // make a date object from reminderDate in the format yyyy/mm/dd
+            var date = new Date(reminderDate);
+
             // Check if the reminderData already passed
             if (reminderDate != "") {
-                var date = new Date(reminderDate);
                 var today = new Date();
                 if (date <= today) {
                     alert("Reminder date has already passed");
@@ -79,6 +81,7 @@
                        subject: subject.val(),
                        body: body.val(),
                        emails: emailsArray,
+                       //reminder: save the string value of $date in the format mm/dd/yyyy
                        reminder: reminderDate
                    }, success: function (response) {
                         $('#myForm')[0].reset();

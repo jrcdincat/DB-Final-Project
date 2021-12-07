@@ -6,13 +6,18 @@ use PHPMailer\PHPMailer\Exception;
     $subject = $_POST['subject'];
     $body = $_POST['body'];
     $emails = $_POST['emails'];
+    
     // Transform the array into a string with commas
     $emailstext = implode(',', $emails);
-    $reminder = $_POST['reminder'];
-
+    $reminder = "";
+    // if reminder is set
+    if(isset($_POST['reminder'])){
+        $reminder = $_POST['reminder'];
+    }
+    $sent = false;
     //If reminder is a valid date, then insert the subject, body, reminder date, and all emails into the table called reminders
-    if(strtotime($reminder) != false){
-        $sql = "INSERT INTO reminders (subject, body, reminder, emails) VALUES ('$subject', '$body', '$reminder', '$emailstext')";
+    if($reminder != "" && strtotime($reminder) != false){
+        $sql = "INSERT INTO reminders (subject, body, reminder, emails, emailsent) VALUES ('$subject', '$body', '$reminder', '$emailstext', '$sent')";
         if ($conn->query($sql) === TRUE) {
             $good = 1;
         } else {
