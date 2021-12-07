@@ -141,7 +141,7 @@
                             // generate books form table
                             foreach ($form_data as $data):
                                 $isbn_val = $data['isbn'];
-                                $sql_get_request_data = "SELECT * FROM books WHERE isbn = '".$isbn_val."'";
+                                $sql_get_request_data = "SELECT * FROM books WHERE isbn = '".$isbn_val."' AND formID = '".$formID."'";
                                 $request_results = mysqli_query($conn, $sql_get_request_data);
                                 $request_data = mysqli_fetch_assoc($request_results);
                     ?>
