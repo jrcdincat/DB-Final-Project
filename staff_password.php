@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+    
     <!-- Add header to webpage -->
     <?php include ('templates/header.php'); ?>
     <?php include ('templates/navbar.php'); ?>
@@ -15,7 +19,7 @@
 
         </section>
     <?php include ('templates/footer.php'); ?>
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript">
         function sendEmail() {
             var email = $("#email").val();

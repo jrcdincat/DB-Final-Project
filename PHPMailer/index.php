@@ -10,6 +10,7 @@
     ?>
 <head>
     <title>Send an Email</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 
@@ -47,6 +48,7 @@
 	</center>
 
     <!-- Javascript to go to sendEmail.php -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script
 	<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript">
         function sendEmail() {

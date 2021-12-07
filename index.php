@@ -59,6 +59,7 @@
 
 <!DOCTYPE html>
 <html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Add header to webpage -->
     <?php include ('templates/header.php'); ?>
     <?php include ('templates/prof_navbar.php'); ?>

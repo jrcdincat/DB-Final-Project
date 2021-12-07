@@ -92,6 +92,7 @@
 <html>
     <!-- Add Jquery Script-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Add header to webpage -->
     <?php include ('templates/header.php'); ?>
     <?php include ('templates/prof_navbar.php'); ?>
