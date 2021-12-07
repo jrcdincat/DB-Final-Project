@@ -23,7 +23,7 @@ require_once "PHPMailer/Exception.php";
         $sql = "UPDATE admin SET pword = '$rand', temp_pass = '$rand' WHERE email = '$email'";
         $result = mysqli_query($conn, $sql);
         if($result){
-            $body = "Here's your temporary password: '$rand'. Please login and change your password. http://localhost/DB-Final-Project/staff.php";
+            $body = "Here's your temporary password: '$rand'. Please login and change your password. https://delicatesound0975.cotunnel.com/DB-Final-Project/staff.php";
             $mail = new PHPMailer(true);
 
             //smtp server settings
