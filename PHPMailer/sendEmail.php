@@ -2,10 +2,23 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-
+    include('../db_connection.php');
     $subject = $_POST['subject'];
     $body = $_POST['body'];
     $emails = $_POST['emails'];
+    // Transform the array into a string with commas
+    $emailstext = implode(',', $emails);
+    $reminder = $_POST['reminder'];
+
+    //If reminder is a valid date, then insert the subject, body, reminder date, and all emails into the table called reminders
+    if(strtotime($reminder) != false){
+        $sql = "INSERT INTO reminders (subject, body, reminder, emails) VALUES ('$subject', '$body', '$reminder', '$emailstext')";
+        if ($conn->query($sql) === TRUE) {
+            $good = 1;
+        } else {
+            $good = 0;    
+        }
+    }
 
     //PHPMailer Files
     require_once "PHPMailer/PHPMailer.php";
