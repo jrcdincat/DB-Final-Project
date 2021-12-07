@@ -46,6 +46,8 @@
     ?>
     <!-- Add header to webpage -->
     <?php include ('templates/header.php'); ?>
+    <?php include ('templates/navbar.php'); ?>
+    
             <p><?php
             if (isset($error)) {
                 echo $error;

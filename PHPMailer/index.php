@@ -2,6 +2,12 @@
 <html>
     <!-- Add header to webpage -->
     <?php include ('../templates/header.php'); ?>
+    <?php include ('../templates/navbar.php'); ?>
+    <?php
+        if(!isset($_COOKIE['email']) || $_COOKIE['email'] == "") {
+            header("Location: staff.php");
+        }
+    ?>
 <head>
     <title>Send an Email</title>
 </head>
@@ -27,9 +33,14 @@
 			<input id="subject" size="30" type="text" placeholder=" Enter Subject">
 			<br><br>
 
+            <!-- Create an input that holds a date in the format mm/dd/yyyy -->
+            <label>Automatic Reminder (Leave Blank for no reminder)</label>
+            <input id="reminder" size="30" type="text" placeholder=" Enter Date in yyyy/mm/dd format">
+            <br><br>
+
 			<p>Message</p>
-			<textarea id="body" rows="15" cols="80" placeholder="Type Message"></textarea>
-			<br><br>
+            <!-- Make a textarea with hello world inside the value of it: -->
+			<textarea id="body" rows="15" cols="80" placeholder="Hello Professor, please make sure to upload your book request by mm/dd/yyyy by logging-in to your account on the following website: http://localhost/DB-Final-Project/"></textarea><br><br>
 
 			<button type="button" onclick="sendEmail()" value="Send An Email">Submit</button>
 		</form>
@@ -46,6 +57,20 @@
             // transform the string into an array
             var emailsArray = emails.split(",");
 
+            // get the value of reminder input
+            var reminder = $("#reminder");
+            var reminderDate = reminder.val();
+            // make a date object from reminderDate in the format yyyy/mm/dd
+            var date = new Date(reminderDate);
+
+            // Check if the reminderData already passed
+            if (reminderDate != "") {
+                var today = new Date();
+                if (date <= today) {
+                    alert("Reminder date has already passed");
+                    return;
+                }
+            }
             //If subject and the text area are not empty, it will send email
             if (isNotEmpty(subject) && isNotEmpty(body)) {
                 $.ajax({
@@ -55,7 +80,9 @@
                    data: {
                        subject: subject.val(),
                        body: body.val(),
-                       emails: emailsArray
+                       emails: emailsArray,
+                       //reminder: save the string value of $date in the format mm/dd/yyyy
+                       reminder: reminderDate
                    }, success: function (response) {
                         $('#myForm')[0].reset();
                         $('.sent-notification').text("Message Sent Successfully.");

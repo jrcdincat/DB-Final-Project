@@ -1,4 +1,11 @@
 <html>
+    <!-- Check if email cookie exists and it's valid -->
+    <?php
+        // If the email cookie doesn't exist or it expired, redirect to login page (staff.php)
+        if(!isset($_COOKIE['email']) || $_COOKIE['email'] == "") {
+            header("Location: staff.php");
+        }
+    ?>
     <!-- Add Jquery Script-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Add header to webpage -->

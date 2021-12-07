@@ -2,6 +2,8 @@
 <html>
     <!-- Add header to webpage -->
     <?php include ('templates/header.php'); ?>
+    <?php include ('templates/navbar.php'); ?>
+
         <h4 class="sent-notification"></h4>
         <section class="container" style="text-align: center;">
             <h1>
@@ -13,7 +15,6 @@
 
         </section>
     <?php include ('templates/footer.php'); ?>
-
     <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript">
         function sendEmail() {

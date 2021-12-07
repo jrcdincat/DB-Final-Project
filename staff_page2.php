@@ -33,9 +33,8 @@
         }
     }
 
-    if(!isset($_COOKIE['email']))
-    {
-        echo "cookie not set";
+    if(!isset($_COOKIE['email']) || $_COOKIE['email'] == "") {
+        header("Location: staff.php");
     }
 
     $email = $_COOKIE['email'];
